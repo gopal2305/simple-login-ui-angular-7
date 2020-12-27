@@ -11,12 +11,20 @@ export class UserService {
         return this.http.get<User[]>(`${config.apiUrl}/users`);
     }
 
+    auditUsers() {
+        return this.http.get<User[]>(`${config.apiUrl}/users/audit`);
+    }
+
     getById(id: number) {
         return this.http.get(`${config.apiUrl}/users/${id}`);
     }
 
     register(user: User) {
         return this.http.post(`${config.apiUrl}/users/register`, user);
+    }
+
+    logout(user: any) {
+        return this.http.post(`${config.apiUrl}/users/logout`, user);
     }
 
     update(user: User) {

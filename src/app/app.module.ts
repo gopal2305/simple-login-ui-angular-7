@@ -2,6 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
@@ -14,11 +15,13 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
+import { AuditComponent } from './audit/audit.component';
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
+        NgxPaginationModule,
         HttpClientModule,
         routing
     ],
@@ -27,7 +30,8 @@ import { RegisterComponent } from './register';
         AlertComponent,
         HomeComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        AuditComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -1,0 +1,42 @@
+<p>Auditor users list!! Total users : {{users.length}}</p>
+
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+</style>
+
+<table class="table table-bordered">
+    <tr>
+        <th class="text-center">Username</th>
+        <th class="text-center">Role</th>
+        <th class="text-center">Client IP</th>
+        <th class="text-center">Login time</th>
+        <th class="text-center">Logout time</th>
+    </tr>
+
+    <tr *ngFor="let user of users | paginate : configPage">
+
+        <td class="text-center">
+            {{user.username}}
+        </td>
+        <td class="text-center">
+            {{user.role}}
+        </td>
+        <td class="text-center">
+            {{user.clientIP ? user.clientIP : 'NA'}}
+        </td>
+        <td class="text-center">
+            {{user.loginTime ? user.loginTime : 'NA'}}
+        </td>
+        <td class="text-center">
+            {{user.logoutTime ? user.logoutTime : 'NA'}}
+        </td>
+    </tr>
+</table>
+<br>
+<pagination-controls (pageChange)="pageChanged($event)" [maxSize]="maxSize" [directionLinks]="directionLinks"
+    [autoHide]="autoHide" [responsive]="responsive" [previousLabel]="labels.previousLabel"
+    [nextLabel]="labels.nextLabel" style="font-size: 17px"></pagination-controls>

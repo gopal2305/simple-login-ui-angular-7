@@ -1,4 +1,5 @@
-﻿import { Routes, RouterModule } from '@angular/router';
+﻿import { AuditComponent } from './audit/audit.component';
+import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
@@ -9,6 +10,7 @@ const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'audit', component: AuditComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }

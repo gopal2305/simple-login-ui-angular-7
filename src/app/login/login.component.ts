@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 
 import { AlertService, AuthenticationService } from '@/_services';
 
-@Component({templateUrl: 'login.component.html'})
+@Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     loading = false;
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
         private alertService: AlertService
     ) {
         // redirect to home if already logged in
-        if (this.authenticationService.currentUserValue) { 
+        if (this.authenticationService.currentUserValue) {
             this.router.navigate(['/']);
         }
     }
@@ -28,7 +28,8 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
             username: ['', Validators.required],
-            password: ['', Validators.required]
+            password: ['', Validators.required],
+            role: ['', Validators.required]
         });
 
         // get return url from route parameters or default to '/'
@@ -47,7 +48,7 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService.login(this.f.username.value, this.f.password.value)
+        this.authenticationService.login(this.f.username.value, this.f.password.value, this.f.role.value.toLowerCase())
             .pipe(first())
             .subscribe(
                 data => {
